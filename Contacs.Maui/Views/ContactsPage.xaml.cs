@@ -1,3 +1,6 @@
+using Contacs.Maui.Models;
+using System.Xml.Linq;
+
 namespace Contacs.Maui.Views;
 
 public partial class ContactsPage : ContentPage
@@ -5,15 +8,21 @@ public partial class ContactsPage : ContentPage
 	public ContactsPage()
 	{
 		InitializeComponent();
+		List<Models.Contact> contacts = ContactRepository.GetContacts();
+		ListContacts.ItemsSource = contacts;
 	}
-
-    private void btn_edit_Clicked(object sender, EventArgs e)
+	 
+    private async void ListContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(EditContactPage));
+		if(ListContacts.SelectedItem != null)
+		{
+			await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?id={((Models.Contact)ListContacts.SelectedItem).ContactID}"); // ean exi epilegi perase to sigekrimeno 
+		}
+
     }
 
-    private void btn_add_Clicked(object sender, EventArgs e)
+    private void ListContacts_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(AddContactPage));
+		ListContacts.SelectedItem = null;
     }
 }
