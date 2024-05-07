@@ -30,7 +30,7 @@ public partial class EditContactPage : ContentPage
             
 		}
 	}
-
+	//test
     private void Update_btn_Clicked(object sender, EventArgs e)
     {
 		contact.Name = entryName.Text;
