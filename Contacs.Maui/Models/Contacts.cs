@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contacs.Maui.Models
 {
-    public class Contact // ORISMOS CLASS  
+    public class Contact // ORISMOS CLASS  //
     {
         public int ContactID { get; set; }
         public string Name { get; set; }
